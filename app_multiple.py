@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -22,7 +25,7 @@ load_css("style.css")
 
 # ---------------- TITLE ----------------
 st.markdown("""
-<div class=card>
+<div class="card">
 <h1>Multiple Linear Regression</h1>
 <p>Predict <b>Tip Amount</b> using multiple features</p>
 </div>
@@ -38,10 +41,8 @@ df = load_data()
 # ---------------- DATASET PREVIEW ----------------
 st.subheader("Dataset Preview")
 st.dataframe(df.head())
-st.markdown("</div>", unsafe_allow_html=True)
 
 # ---------------- DATA PREPARATION ----------------
-# Multiple features
 X = df[["total_bill", "size"]]
 y = df["tip"]
 
@@ -74,8 +75,6 @@ ax.set_xlabel("Total Bill")
 ax.set_ylabel("Tip Amount")
 st.pyplot(fig)
 
-st.markdown("</div>", unsafe_allow_html=True)
-
 # ---------------- PERFORMANCE ----------------
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.subheader("Model Performance")
@@ -92,7 +91,7 @@ st.markdown("</div>", unsafe_allow_html=True)
 
 # ---------------- COEFFICIENTS ----------------
 st.markdown(f"""
-<div class=card>
+<div class="card">
 <h2>Model Coefficients</h2>
 <p>
 <b>Total Bill Coefficient:</b> {model.coef_[0]:.3f}<br>
