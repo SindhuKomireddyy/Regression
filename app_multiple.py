@@ -7,6 +7,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+import os
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LinearRegression
@@ -16,12 +17,13 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config("Multiple Linear Regression", layout="centered")
 
-# ---------------- LOAD CSS ----------------
-def load_css(file):
-    with open(file) as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+# ---------------- LOAD CSS (SAFE) ----------------
+def load_css():
+    if os.path.exists("style.css"):
+        with open("style.css") as f:
+            st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-load_css("style.css")
+load_css()
 
 # ---------------- TITLE ----------------
 st.markdown("""
